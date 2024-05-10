@@ -229,26 +229,3 @@ def enroll(request,id):
     print(date_of_enroll)
     Members.objects.create(user=user_profile, EnrolledSports=enrolled_sport, dateOfEnroll=date_of_enroll)
     return redirect('memberDash') 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
