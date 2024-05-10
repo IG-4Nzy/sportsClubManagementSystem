@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+    <title>Member Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-button {
+            background-color: #ff3333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .logout-button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="{% url 'enrollSports' %}">Enroll Sports</a>
+        <a href="{% url 'logout_view' %}" class="logout-button">Logout</a>
+    </div>
+    <div class="container">
+    <h2>Enrolled Sports Details</h2>
+    
+</div>
+<ul class="ml-20">
+     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    {% for member in enrolled_sports %}
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <img src="{{ member.EnrolledSports.img.url }}" alt="Sport Image" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h3 class="text-lg font-bold mb-2">Sport :{{ member.EnrolledSports.name }}</h3>
+                <p class=" mb-2">Date Enrolled {{ member.dateOfEnroll }}</p>
+                 {% if member.status == "Cancelled" %} <p class=" mb-2">Date Quitted {{ member.dateOfEnroll }}</p>{% endif %}
+                <p class="text-gray-700 mb-2">Club name : {{ member.EnrolledSports.club.clubName }}</p>
+                <p class="text-gray-700 mb-2">Club Licence : {{ member.EnrolledSports.club.licence }}</p>
+                <p class="mt-4">
+                    <span class="text-sm font-semibold">Name:</span>
+                    <span>{{ member.user.user.first_name }}</span>
+                </p>
+                <p class="text-gray-600">Status: {{ member.status }}</p> {% if member.status == "Active" %} <a class="text-red-500" href="{% url 'cancel' id=member.id %}">Cancel</a> {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p class="col-span-full text-center text-gray-600">No enrolled sports yet.</p>
+    {% endfor %}
+    </ul>
+</body>
+</html>

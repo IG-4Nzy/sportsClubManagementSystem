@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Edit Club Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="file"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+        }
+        
+        .form-group input[type="submit"],a {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Club Profile</h2>
+        <form action="#" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="club-name">Club Name</label>
+                <input type="text" id="club-name" name="club-name" value="{{club.clubName}}">
+            </div>
+            <div class="form-group">
+                <label for="club-description">Description</label>
+                <textarea id="club-description" name="club-description" >{{club.description}}</textarea>
+            </div>
+            {% comment %} <div class="form-group">
+                <label for="club-email">Email</label>
+                <input type="email" id="club-email" name="club-email" value="{{club.email}}">
+            </div> {% endcomment %}
+            <div class="form-group">
+                <label for="club-website">Website</label>
+                <input type="text" id="club-website" name="club-website" value="{{club.websites}}">
+            </div>
+            <div class="form-group">
+                <label for="club-image">Club Image</label>
+                <input type="file" id="club-image" name="club-image">
+            </div>
+            <div class="form-group">
+                <label for="club-license">License</label>
+                <input type="text" id="club-license" name="club-license" value="{{club.licence}}">
+            </div>
+            <div class="flex space-x-10 justify-center  items-center">
+                <div class="form-group">
+                    <input type="submit" value="Save Changes">
+                </div>
+                {% if club.user.isProfileComplete == "True" %}
+                <div class="form-group ">
+                    <a class="text-white " href="{% url 'login' %}">Back</a>
+                </div>
+                {% endif %}
+            </div>
+        </form>
+        {% if club.user.isProfileComplete == "True" %} <p class="border-2 border-red-500 p-3 text-center " >Profile Completed , Wait for get verified by the admin </p>{% endif %}
+    </div>
+</body>
+</html>

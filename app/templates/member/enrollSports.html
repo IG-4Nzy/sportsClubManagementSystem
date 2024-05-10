@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+    <title>Enroll Sports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-button {
+            background-color: #ff3333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .enroll-sports {
+            background-color: #777373;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .logout-button:hover {
+            background-color: #cc0000;
+        }
+        .search-container {
+    margin-bottom: 20px;
+}
+
+#search-input {
+    padding: 10px;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}
+.card{
+    border:2px solid grey;
+    margin-bottom:10px;
+    padding:30px
+}
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{% url 'memberDash' %}">Home</a>
+        <a href="#">About</a>
+        <a class="enroll-sports" href="{% url 'enrollSports' %}">Enroll Sports</a>
+        <a href="{% url 'logout_view' %}" class="logout-button">Logout</a>
+    </div>
+    <div class="container">
+        <div class="search-container">
+    <form id="search-form" method="GET" action="">
+        <input type="text" id="search-input" name="search_query" placeholder="Search for sports...">
+        <button type="submit" id="search-button">Search</button>
+    </form>
+</div>
+        
+    </div>
+    <div class="container mx-auto py-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for sport in sports %}
+        <div class="card bg-white rounded-lg border-2 border-red-300 shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+           {% if sport.img.url %} 
+                 <img src="{{ sport.img.url }}" alt="{{ sport.name }}" class="w-full h-48 object-cover">
+            {% endif %}
+            <div class="p-4">
+                <h3 class="text-xl font-semibold mb-2">{{ sport.name }}</h3>
+                <p class="text-sm text-gray-600 mb-1">Club Name: {{ sport.club.clubName }}</p>
+                <p class="text-sm text-gray-600 mb-1">Fees: {{ sport.fees }}</p>
+                <p class="text-sm text-gray-600 mb-1">Description: {{ sport.club.description }}</p>
+                <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{% url 'enroll' id=sport.id %}">Enroll</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+
+</html>

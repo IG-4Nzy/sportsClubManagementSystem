@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Add Sports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input[type="text"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+        }
+        
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add Sports</h2>
+        <!-- Form to add new sports -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="sport-name">Sport Name</label>
+                <input type="text" id="sport-name" name="sport-name" required>
+            </div>
+            <div class="form-group">
+                <label for="sport-description">Description</label>
+                <textarea id="sport-description" name="sport-description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="sport-fees">Fees</label>
+                <input class="border-2 border-gray-300" type="number" id="sport-fees" name="sport-fees" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="sport-image">Image</label>
+                <input type="file" id="sport-image" name="sport-image" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Sport">
+            </div>
+        </form>
+        <div class="w-[7rem] h-[2rem] text-white rounded-2xl flex justify-center content-center bg-blue-600">
+            <a class="flex items-center content-center justify-center" href="{% url 'clubDash' %}">Back</a>
+        </div>
+        
+        <!-- Display already added sports details -->
+        <h2 class="bg-gray-300 p-5 text-xl mt-10 font-bold ">Already Added Sports</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sport Image</th>
+                    <th>Sport Name</th>
+                    <th>Description</th>
+                    <th>Fees</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sport in sports %}
+                <tr>
+                    <td>{% if sport.img %} <img class="w-[5rem] h-[5rem] rounded-full" src="{{sport.img.url}}">{% endif %}</td>
+                    <td>{{ sport.name }}</td>
+                    <td>{{ sport.description }}</td>
+                    <td>{{ sport.fees }}</td>
+                    <td><a class="text-red-500" href="{% url 'removeSport' id=sport.id %}">Remove</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

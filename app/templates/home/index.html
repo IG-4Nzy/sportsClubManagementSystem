@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Sports Club Management System</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .buttons {
+            width: 10rem;
+            height: 2rem;
+            display: flex;
+            justify-content: center;
+            place-items: center;
+            place-content: center;
+            align-items: center;
+            background-color: yellow;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        .main_text{
+            display: flex;
+            justify-content: center;
+            place-items: center;
+            place-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body class="main-layout">
+    <div class="loader_bg">
+        <div class="loader"><img src="{% static 'img/loading.gif' %}" alt="" /></div>
+    </div>
+
+    <div id="content">
+        <header>
+            <div class="container">
+                <div class="row bor_bottom">
+
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <ul class="social_top_icon">
+                            <li> <a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                            <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li> <a href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <div class="full">
+                            <div class="right_header_info">
+                                <ul>
+                                    <li>
+                                        <button type="button" id="sidebarCollapse">
+                                    <li>
+                                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#navbarSupportedContent"
+                                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                                            aria-label="Toggle navigation">
+                                            <img src="{% static 'img/menu_icon.png' %}" alt="#">
+                                        </button>
+                                    </li>
+                                    <li><img style="margin-right: 15px;" src="{% static 'img/search_icon.png' %}"
+                                            alt="#"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="slider_section banner_main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="main_text">
+                            <h1 style="text-align:center; line-height: 0.8;"><strong class="bold_text"
+                                    style="font-size:64px;">SPORTS CLUB</strong><strong class="bold_text_black"
+                                    style="font-size:64px;"><br> MANAGEMENT SYSTEM</strong></h1>
+                            <br><br>
+                            <span style="text-align:center;">The five S’s of sports training are: stamina, speed,
+                                strength, skill, and spirit; but the greatest of these is spirit - Ken Doherty </span>
+                            <a class="buttons" href="{% url 'login' %}">Login</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="six_box">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 pppp">
+                        <div class="black_box">
+                            <h3>Cycling</h3>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 pppp">
+                        <div class="black_box yellow_box">
+                            <h3>Swimming</h3>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 pppp">
+                        <div class="black_box">
+                            <h3>Track Training</h3>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 pppp">
+                        <div class="black_box yellow_box">
+                            <h3>Golf</h3>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 pppp">
+                        <div class="black_box">
+                            <h3>Tennis</h3>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 pppp">
+                        <div class="black_box yellow_box">
+                            <h3>Weight Training</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="overlay"></div>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+
+    <!-- Assuming you want to use jQuery again -->
+    <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').removeClass('active');
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').addClass('active');
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+    <script>
+        // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+        // Australia.
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 11,
+                center: {
+                    lat: 40.645037,
+                    lng: -73.880224
+                },
+            });
+
+            var image = 'images/maps-and-flags.png';
+            var beachMarker = new google.maps.Marker({
+                position: {
+                    lat: 40.645037,
+                    lng: -73.880224
+                },
+                map: map,
+                icon: image
+            });
+        }
+    </script>
+    <!-- google map js -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
+    <!-- end google map js -->
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content {
+            margin-left: 250px; /* Adjusted to accommodate sidebar width */
+            padding: 20px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 0;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="navbar">
+    <h1>Admin Dashboard</h1>
+    <div class="space-x-10"> 
+        <a class="hover:text-gray-300" href="#">Home</a>
+        <a class="hover:text-gray-300" href="{% url 'logout_view' %}">logout</a>
+        
+    </div>
+</div>
+
+
+<div class="content grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    {% for club in clubs %}
+        <div class="bg-white rounded-lg overflow-hidden shadow-md">
+            <img src="{{ club.image.url }}" alt="{{ club.clubName }}" class="w-full h-64 object-cover">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold mb-2">{{ club.clubName }}</h3>
+                <p class="text-gray-600 mb-2">{{ club.description }}</p>
+                <p class="text-gray-600 mb-2">Websites: {{ club.websites }}</p>
+                <p class="text-gray-600 mb-2">Licence: {{ club.licence }}</p>
+                <div class="mt-4">
+                    {% if club.user.isActive == 'True' %}
+                        <span class="bg-green-500 text-white px-2 py-1 rounded-md">Approved</span>
+                    {% elif club.user.isActive == 'rejected' %}
+                        <span class="bg-red-500 text-white px-2 py-1 rounded-md">Rejected</span>
+                    {% elif club.user.isActive == 'False' %}
+                        <a href="{% url 'approve' id=club.user.id %}" class="inline-block bg-green-500 text-white px-2 py-1 rounded-md mr-2">Approve</a>
+                        <a href="{% url 'reject' id=club.user.id %}" class="inline-block bg-red-500 text-white px-2 py-1 rounded-md">Reject</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+
+</body>
+</html>

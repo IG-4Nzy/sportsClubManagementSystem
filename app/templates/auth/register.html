@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+    <style>
+        body {
+            background-image:url('{% static "img/lo.jpg" %}');
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="mx-auto max-w-[432px] bg-white rounded-md shadow-lg drop-shadow-md  mt-12">
+  <div class="px-4 py-3 flex justify-between">
+    <div>
+      {% if msg %}<h5 style="color:blueviolet;">{{msg}}</h5>{% endif %}
+      <h2 class="font-bold" style="font-size: 32px">Sign Up</h2>
+      <p class="text-gray-500" style="font-size: 15px">It's quick and easy.</p>
+    </div>
+    <div style="cursor: pointer" class="text-gray-600 ">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-7 w-7"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="3"
+          d="M6 18L18 6M6 6l12 12"
+        ></path>
+      </svg>
+    </div>
+  </div>
+  <hr class="bg-gray-600 "/>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="px-4 pt-3 pb-6 space-y-3  ">
+      <div class="space-x-3 flex">
+        <input
+          name="firstName"
+          type="text"
+          placeholder="First name"
+          class="flex-1 ring-1 ring-gray-400 rounded-md text-md px-2 py-2 outline-none bg-gray-100 focus:placeholder-gray-500"
+        />
+        <input
+          name="surname"
+          type="text"
+          placeholder="Surname"
+          class="flex-1 ring-1 ring-gray-400 rounded-md text-md px-2 py-2 outline-none bg-gray-100 focus:placeholder-gray-500"
+        />
+      </div>
+      <div>
+        <input
+          type="number"
+          name="number"
+          placeholder="Mobile number"
+          class="w-full ring-1 ring-gray-400 rounded-md text-md px-2 py-2 outline-none bg-gray-100 focus:placeholder-gray-500"
+        
+          />
+      </div>
+      <div>
+        <input
+          type="email"
+          placeholder="email address"
+          class="w-full ring-1 ring-gray-400 rounded-md text-md px-2 py-2 outline-none bg-gray-100 focus:placeholder-gray-500"
+          name = 'email'
+          />
+      </div>
+      <div>
+        <input
+          type="password"
+          placeholder="New password"
+          class="w-full ring-1 ring-gray-400 rounded-md text-md px-2 py-2 outline-none bg-gray-100 focus:placeholder-gray-500"
+          name="password"
+          />
+      </div>
+      <div>
+        <input
+          type="password"
+          placeholder="retype password"
+          class="w-full ring-1 ring-gray-400 rounded-md text-md px-2 py-2 outline-none bg-gray-100 focus:placeholder-gray-500"
+          name="cpassword"
+          />
+      </div>
+      
+      <div>
+        <div class="text-gray-500" style="font-size: 12px;">
+          Date of birth <a href=""> (?) </a>
+        </div>
+        <div class="mt-1 flex space-x-3">
+          <input type="date" name='dob'>
+        </div>
+      </div>
+      <div>
+        <div class="text-gray-500" style="font-size: 12px;">
+          Gender <a href=""> (?) </a>
+        </div>
+        <div class="mt-1 flex space-x-3">
+          <label
+            for="female"
+            class="flex-1 flex space-x-2 justify-between items-center rounded-md px-2 py-1 border border-gray-400"
+          >
+            <span>Female</span>
+            <input type="radio" id="female" value="female" name="gender" />
+          </label>
+          <label
+            for="male"
+            class="flex-1 flex space-x-2 justify-between items-center rounded-md px-2 py-1 border border-gray-400"
+          >
+            <span>Male</span>
+            <input type="radio" id="male" value="male" name="gender" />
+          </label>
+          <label
+            for="other"
+            class="flex-1 flex space-x-2 justify-between items-center rounded-md px-2 py-1 border border-gray-400"
+          >
+            <span>Custom</span>
+            <input type="radio" id="other" value="other" name="gender" />
+          </label>
+        </div>
+        <div class="text-gray-500" style="font-size: 12px;">
+          Role  <a href=""> (?) </a>
+        </div>
+        <div class="mt-1 flex space-x-3">
+          <label
+            for="club"
+            class="flex-1 flex space-x-2 justify-between items-center rounded-md px-2 py-1 border border-gray-400"
+          >
+            <span>Club </span>
+            <input type="radio" id="club" value="club" name="role" />
+          </label>
+          <label
+            for="member"
+            class="flex-1 flex space-x-2 justify-between items-center rounded-md px-2 py-1 border border-gray-400"
+          >
+            <span>Member</span>
+            <input type="radio" id="member" value="member" name="role" />
+          </label>
+        </div>
+      </div>
+      <div>
+        <p class="text-gray-600" style="font-size: 11px">
+          People who use our service may have uploaded your contact information to
+          Facebook.
+          <a href="#" class="hover:text-blue-900 font-medium hover:underline"
+            >Learn more</a
+          >.
+        </p>
+        <p class="text-gray-600 mt-4" style="font-size: 11px">
+          By clicking Sign Up, you agree to our
+          <a href="#" class="hover:text-blue-900 font-medium hover:underline"
+            >Terms</a
+          >,
+          <a href="#" class="hover:text-blue-900 font-medium hover:underline"
+            >Privacy Policy</a
+          >
+          and
+          <a href="#" class="hover:text-blue-900 font-medium hover:underline"
+            >Cookies Policy</a
+          >. You may receive SMS notifications from us and can opt out at any
+          time.
+        </p>
+      </div>
+      <div class="text-center">
+        <input type="submit"
+          class="text-white font-bold px-16 py-1 rounded-md"
+          style="background-color: #00A400; font-size: 18px;"
+        value="register">
+      </div>
+    </div>
+  </div>
+</form>
+
+
+    
+</body>
+
+</html>
